@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from django.utils.translation import gettext_lazy as _
+
 from decouple import config, Csv
 import dj_database_url
 
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -111,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -141,3 +144,15 @@ LOGIN_REDIRECT_URL = 'home'
 EMAIL_BACKEND = config('EMAIL_BACKEND')
 
 LOGIN_URL = 'login'
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('ja', _('Japanese')),
+]
+
+USE_I18N = True # enable translations
+USE_L10N = True # 日付フォーマット設定USE_I18N = True

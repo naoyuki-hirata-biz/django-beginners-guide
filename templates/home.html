@@ -1,17 +1,19 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+
 {% block breadcrumb %}
-  <li class="breadcrumb-item active">Boards</li>
+  <li class="breadcrumb-item active">{% trans 'Boards' %}</li>
 {% endblock %}
 
 {% block content %}
   <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th>Board</th>
-        <th>Posts</th>
-        <th>Topics</th>
-        <th>Last Post</th>
+        <th>{% trans 'Board' %}</th>
+        <th>{% trans 'Posts' %}</th>
+        <th>{% trans 'Topics' %}</th>
+        <th>{% trans 'Last Post' %}</th>
       </tr>
     </thead>
     <tbody>
@@ -37,7 +39,7 @@
               </small>
             {% else %}
               <small class="text-muted">
-                <em>No posts yet.</em>
+                <em>{% trans 'No posts yet.' %}</em>
               </small>
             {% endif %}
           {% endwith %}

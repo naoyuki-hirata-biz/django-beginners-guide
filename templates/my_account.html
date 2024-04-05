@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}My account{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans 'My account' %}{% endblock %}
 
 {% block breadcrumb %}
-  <li class="breadcrumb-item active">My account</li>
+  <li class="breadcrumb-item active">{% trans 'My account' %}</li>
 {% endblock %}
 
 {% block content %}
@@ -12,7 +14,7 @@
       <form method="post" novalidate>
         {% csrf_token %}
         {% include 'includes/form.html' %}
-        <button type="submit" class="btn btn-success">Save changes</button>
+        <button type="submit" class="btn btn-success">{% trans 'Save changes' %}</button>
       </form>
     </div>
   </div>

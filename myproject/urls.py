@@ -16,12 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.urls import path
+from django.urls import path, include
+from django.conf.urls.i18n import i18n_patterns
 
 from accounts import views as accounts_views
 from boards import views
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('signup/', accounts_views.signup, name='signup'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
@@ -57,13 +58,9 @@ urlpatterns = [
     path('boards/<int:pk>/topics/<int:topic_pk>/posts/<int:post_pk>/edit/',
         views.PostUpdateView.as_view(), name='edit_post'),
     path('settings/account/', accounts_views.UserUpdateView.as_view(), name='my_account'),
-    # path('about/', views.about, name='about'),
-    # path('about/company/', views.about_company, name='about_company'),
-    # path('about/author/', views.about_author, name='about_author'),
-    # path('about/author/vitor/', views.about_vitor, name='about_vitor'),
-    # path('about/author/erica/', views.about_erica, name='about_erica'),
-    # path('privacy/', views.privacy_policy, name='privacy_policy'),
-    # path('<slug:username>/', views.user_profile, name='user_profile'),
-    # path('', views.home, name='home'),
     path('', views.BoardListView.as_view(), name='home'),
+    prefix_default_language=False
+)
+urlpatterns += [
+    path("i18n/", include("django.conf.urls.i18n"))
 ]

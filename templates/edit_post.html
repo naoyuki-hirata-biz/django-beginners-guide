@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load i18n %}
 
-{% block title %}Edit post{% endblock %}
+{% block title %}{% trans 'Edit post' %}{% endblock %}
 
 {% block stylesheet %}
   <link rel="stylesheet" href="{% static 'css/simplemde.min.css' %}">
@@ -16,17 +17,17 @@
 {% endblock %}
 
 {% block breadcrumb %}
-  <li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">{% trans 'Boards' %}</a></li>
   <li class="breadcrumb-item"><a href="{% url 'board_topics' post.topic.board.pk %}">{{ post.topic.board.name }}</a></li>
   <li class="breadcrumb-item"><a href="{% url 'topic_posts' post.topic.board.pk post.topic.pk %}">{{ post.topic.subject }}</a></li>
-  <li class="breadcrumb-item active">Edit post</li>
+  <li class="breadcrumb-item active">{% trans 'Edit post' %}</li>
 {% endblock %}
 
 {% block content %}
   <form method="post" class="mb-4" novalidate>
     {% csrf_token %}
     {% include 'includes/form.html' %}
-    <button type="submit" class="btn btn-success">Save changes</button>
-    <a href="{% url 'topic_posts' post.topic.board.pk post.topic.pk %}" class="btn btn-outline-secondary" role="button">Cancel</a>
+    <button type="submit" class="btn btn-success">{% trans 'Save changes' %}</button>
+    <a href="{% url 'topic_posts' post.topic.board.pk post.topic.pk %}" class="btn btn-outline-secondary" role="button">{% trans 'Cancel' %}</a>
   </form>
 {% endblock %}

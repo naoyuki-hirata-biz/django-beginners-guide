@@ -7,15 +7,16 @@ ARG USERNAME
 RUN groupadd -g ${GID} ${USERNAME} \
   && useradd -u ${UID} -g ${GID} -s /bin/bash -m ${USERNAME}
 
-RUN apt-get update && \
-    apt-get upgrade && \
+RUN apt-get update -y && \
+    apt-get upgrade -y && \
     apt-get install -y \
     vim \
     python3-dev \
     default-mysql-client \
     default-libmysqlclient-dev \
     build-essential \
-    pkg-config
+    pkg-config \
+    gettext
 
 RUN mkdir -p /opt/python
 WORKDIR /opt/python

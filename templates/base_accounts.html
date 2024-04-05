@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load i18n %}
 
 {% block stylesheet %}
   <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
@@ -9,7 +10,7 @@
 {% block body %}
   <div class="container">
     <h1 class="text-center logo my-4">
-      <a href="{% url 'home' %}">Django Boards</a>
+      <a href="{% url 'home' %}">{% trans 'Django Boards' %}</a>
     </h1>
     {% block content %}
     {% endblock %}
